@@ -1,0 +1,123 @@
+@mixin component_cms_preview {
+  #component_preview {
+    @content;
+  }
+}
+
+#component_preview {
+  a.button.append-inline, a.button.append-block {
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  a.button.append-block {
+    @include outer-container;
+    display: block;
+  }
+
+  .cms-fields {
+    display: none;
+  }
+}
+
+#wrapper #active_admin_content #main_content_wrapper #main_content {
+  form#edit_page {
+    div.buttons {
+      @include clearfix;
+      margin: 0 0 20px;
+
+      ol.edit-buttons {
+        @include clearfix;
+        float: left;
+        width: 75%;
+
+        li {
+          float: left;
+          font-size: 12px;
+          margin: 0 10px 10px 0;
+
+          a.button {
+            @include linear-gradient(to bottom, #ffffff, #f1f1f1, $fallback: #f8f8f8);
+            @include shadow(1px, 1px, 3px, rgba(138, 138, 138, 0.22));
+            border-color: #dcdcdc;
+            color: #666666;
+            font-weight: normal;
+            line-height: 20px;
+            padding-left: 35px;
+            position: relative;
+            text-shadow: none;
+
+            &::after {
+              @include retina-image("icon_add_component", 16px 15px, "png", null, "@2x", true);
+              background-position: left center;
+              background-repeat: no-repeat;
+              content: '';
+              height: 30px;
+              position: absolute;
+              left: 10px;
+              top: 0;
+              width: 16px;
+            }
+          }
+        }
+      }
+
+      fieldset.actions {
+        float: right;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+
+  #draft-panel.active {
+    [data-cms-node] {
+      h1, h2, h3, h4, h5, h6, p, li, img, a.button, iframe {
+        opacity: 0.35;
+      }
+
+      li li {
+        opacity: 1;
+      }
+
+      &.active {
+        h1, h2, h3, h4, h5, h6, p, li, img, a.button, iframe {
+          opacity: 1;
+        }
+
+        [data-cms-node] {
+          h1, h2, h3, h4, h5, h6, p, li, img, a.button, iframe {
+            opacity: 0.35;
+          }
+        }
+      }
+    }
+  }
+}
+
+#edit-node-column {
+  position: relative;
+}
+
+#edit-node {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+
+  li {
+    margin: 0 10px 10px 0;
+  }
+
+  li.delete {
+    a.button {
+      background-color: #d44040;
+      border-color: #cc2525;
+      color: #ffffff;
+    }
+  }
+}
