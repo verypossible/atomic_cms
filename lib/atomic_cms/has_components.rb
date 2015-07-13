@@ -9,7 +9,7 @@ module AtomicCms
     module ClassMethods
       def component_attr(name)
         define_method("set_default_#{name}") do
-          write_attr(name, ArrayComponent.new.to_yaml) unless send(name)
+          write_attribute(name, ArrayComponent.new.to_yaml) unless send(name)
         end
 
         after_initialize "set_default_#{name}"

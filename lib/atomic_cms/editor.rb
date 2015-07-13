@@ -16,8 +16,8 @@ module AtomicCms
 
     module ClassMethods
       def from_hash(params)
-        component(params.delete(:template_name)).tap do |obj|
-          params.each { |key, val| obj.options[key] = from_value(key, val) }
+        h.component(params.delete(:template_name)).tap do |obj|
+          params.each { |key, val| obj.options[key.to_sym] = from_value(key, val) }
         end
       end
 
@@ -32,7 +32,7 @@ module AtomicCms
       def from_value(key, value)
         return from_array(value) if key === 'children'
         return from_hash(value) if Hash === value
-        value
+        value == "" || value == key ? nil : value
       end
     end
 
@@ -57,7 +57,7 @@ module AtomicCms
       rtn = h.render partial: 'components/template_field', locals: { value: component_name }
       rtn << h.content_tag(:span, class: 'cms-fields') do
         fields.map do |field, type|
-          h.render partial: "components/#{type}_field", locals: { name: field, value: try(field) }
+          h.render partial: "components/#{type}_field", locals: { name: field, value: local_options[field] || field }
         end.join('').html_safe
       end
     end
