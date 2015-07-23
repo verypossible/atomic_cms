@@ -56,8 +56,8 @@ module AtomicCms
     def cms_fields(fields = {})
       rtn = h.render partial: 'components/template_field', locals: { value: component_name }
       rtn << h.content_tag(:span, class: 'cms-fields') do
-        fields.map do |field, type|
-          h.render partial: "components/#{type}_field", locals: { name: field, value: local_options[field] || field }
+        fields.map do |field, options|
+          h.render partial: "components/#{options[:field_type]}_field", locals: { name: field, value: local_options[field] || field, options: options }
         end.join('').html_safe
       end
     end
