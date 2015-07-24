@@ -32,7 +32,8 @@ module AtomicCms
       def from_value(key, value)
         return from_array(value) if key === 'children'
         return from_hash(value) if Hash === value
-        value == "" || value == key ? nil : value
+        return nil if value.empty?
+        value
       end
     end
 
@@ -57,7 +58,7 @@ module AtomicCms
       rtn = h.render partial: 'components/template_field', locals: { value: component_name }
       rtn << h.content_tag(:span, class: 'cms-fields') do
         fields.map do |field, options|
-          h.render partial: "components/#{options[:field_type]}_field", locals: { name: field, value: local_options[field] || field, options: options }
+          h.render partial: "components/#{options[:field_type]}_field", locals: { name: field, value: local_options[field], options: options }
         end.join('').html_safe
       end
     end
