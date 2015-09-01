@@ -1,0 +1,5 @@
+span.li.string.input
+  label.label #{name.to_s.humanize}
+  select.cms-field name="#{name}" data-ng-model="preview.#{name}"
+    option
+    = options_for_select(options[:collection], value)
