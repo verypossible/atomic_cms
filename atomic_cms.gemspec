@@ -10,10 +10,13 @@ Gem::Specification.new do |s|
   # s.homepage    = 'http://rubygems.org/gems/atomic_cms'
   # s.license       = 'MIT'
 
-  s.add_dependency 'activeadmin'
+  s.add_dependency 'rails', '~> 4.2'
+  s.add_dependency 'activeadmin', '1.0.0.pre2'
   s.add_dependency 'angularjs-rails', '~> 1.3', '< 1.4'
-  # s.add_dependency 'atomic_assets', '~> 0.0.4'
+  s.add_dependency 'atomic_assets', '~> 0.0.4'
   s.add_dependency 'jquery-rails', '~> 4.0', '>= 4.0.3'
+  s.add_dependency 'redcarpet', '~> 3.3'
+  s.add_dependency 'slim-rails', '~> 3.0'
 
   s.add_development_dependency 'rspec-core', '~> 3.3'
   s.add_development_dependency 'rspec-expectations', '~> 3.3'
