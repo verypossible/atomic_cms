@@ -11,21 +11,18 @@ intervention. Below are instructions for getting started.
 After initializing a new Rails application, or adding to an existing
 application, add the following gems to your Gemfile.
 ```ruby
-gem 'activeadmin', github: 'activeadmin'
-gem 'angularjs-rails'
-gem 'atomic_assets'
-gem 'atomic_cms', github: 'samcdavid/atomic_cms'
+gem 'atomic_cms', github: 'spartansystems/atomic_cms'
 gem 'devise'
-gem 'redcarpet'
-gem 'slim-rails'
 ```
+_Note: devise is optional if you do not want admin users to login._
+
 Then perform a `bundle install`.
 
 ## Initialization
 ### Active Admin
 To initialize Active Admin:
 ```ruby
-rails generate active_admin:install
+rails generate install_cms
 ```
 Remove the comments migration Active Admin created along with disabling comments
 on line 122 of the Active Admin initializer.
