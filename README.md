@@ -57,7 +57,7 @@ scss file for your text block component.
 Now, update your active_admin.scss file to match the following:
 ```scss
 
-rt "active_admin/mixins";
+@import "active_admin/mixins";
 @import "active_admin/base";
 @import "bourbon";
 @import "neat";
@@ -66,7 +66,6 @@ rt "active_admin/mixins";
 @import "atomic_cms";
 
 #component_preview {
-  //@import "base/base";
   @import "reset";
   @import "base/buttons";
   @import "base/forms";
@@ -332,3 +331,7 @@ Update `config/application.rb` to include:
 ```ruby
 config.autoload_paths += %W(#{config.root}/lib, #{config.root}/app/components/**/)
 ```
+
+### Gotcha's
+When creating a path for a page, from the examples above, make sure to include a
+leading '/', for example: '/home' -or- '/bears'
