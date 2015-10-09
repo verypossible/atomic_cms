@@ -1,0 +1,16 @@
+{
+  'env': {
+    'browser': true,
+    'node': true
+  },
+  'globals': {
+    'window': true,
+    'document': true,
+    'jQuery': true,
+    '$': true,
+    'angular': true
+  },
+  'rules': {
+    'quotes': [2, 'single', 'avoid-escape']
+  }
+}
