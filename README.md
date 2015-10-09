@@ -22,7 +22,7 @@ Then perform a `bundle install`.
 ### Active Admin
 To initialize Active Admin:
 ```ruby
-rails generate install_cms
+rails generate atomic_cms:install
 ```
 Remove the comments migration Active Admin created along with disabling comments
 on line 122 of the Active Admin initializer.
@@ -35,26 +35,16 @@ To verify, start the server and visit `localhost:3000/admin`. If you can login
 as `admin@example.com` with the password `password` you have successfully
 completed this step.
 
-#### JavaScript
-Next, update `./app/assets/javascripts/active_admin.js.coffee` to match the
-following:
-```coffee
-#= require active_admin/base
-#= require angular
-#= require angular-sanitize
-#= require atomic_cms
-```
-
 #### Styles
-You should install bourbon, bitters, and neat as well as reset.css in order for
-the next steps to work correctly. Also create a folder under your stylesheets
-folder for all of the scss for your components and go ahead and create an empty
-scss file for your text block component.
+In order for component previews to have the proper project styling,
+`active_admin.scss` will need to be updated to import your `application.scss`.
+*NOTE:* If you are using bourbon, bitters, and neat you will not be able to
+straight import `application.scss` as certain styles within base must be
+imported under the `#component_preview` selector. Below is an example of how
+this is properly imported:
 
-Now, update your active_admin.scss file to match the following:
 ```scss
-
-rt "active_admin/mixins";
+@import "active_admin/mixins";
 @import "active_admin/base";
 @import "bourbon";
 @import "neat";
@@ -63,7 +53,6 @@ rt "active_admin/mixins";
 @import "atomic_cms";
 
 #component_preview {
-  //@import "base/base";
   @import "reset";
   @import "base/buttons";
   @import "base/forms";
