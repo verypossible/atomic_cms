@@ -11,6 +11,7 @@ class InstallCmsGenerator < Rails::Generators::Base
     generate 'active_admin:install', flags
     initialize_active_admin_assets
     initialize_active_admin_scss
+    route 'mount AtomicCms::Engine => "/atomic_cms"'
   end
 
   private
