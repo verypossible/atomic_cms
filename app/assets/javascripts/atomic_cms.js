@@ -135,30 +135,29 @@
 
           $editor.find(':file').each(function() {
             var $input = $(this);
-            var fieldName = $input.attr('name').replace($scope.prefix, '').replace(/\[|\]/g, '');
-
-            $input.attr('name', null).val($scope.preview[fieldName]);
+            var $next = $($input.next());
+            $input.attr('name', null).val('');
 
             return $input.on('change', function() {
 
               var formData = new FormData(),
-                fileData = event.target.files[0];
-                formData.append('file', fileData);
+                  fileData = event.target.files[0],
+                  next = $(event.target).next();
+                  formData.append('file', fileData);
 
-                $.ajax({
-                  url: '/media',
-                  type: 'POST',
-                  dataType: 'text',
-                  data: formData,
-                  contentType: false,
-                  processData: false,
-                  success: function (data) {
-                    console.log(data);
-                    $scope.$apply(function() {
-                      $scope.preview[fieldName] = data;
-                    });
-                  }
-                });
+              $.ajax({
+                url: '/media',
+                type: 'POST',
+                dataType: 'text',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                  var parsed = JSON.parse(data);
+                  $next.val(parsed.url);
+                  $next.change();
+                }
+              });
             });
           });
 
