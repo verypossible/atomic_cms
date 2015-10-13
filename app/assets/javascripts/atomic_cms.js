@@ -146,7 +146,7 @@
                   formData.append('file', fileData);
 
               $.ajax({
-                url: '/media',
+                url: '/atomic_cms/media',
                 type: 'POST',
                 dataType: 'text',
                 data: formData,
