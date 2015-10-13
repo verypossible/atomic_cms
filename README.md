@@ -319,6 +319,10 @@ Update `config/application.rb` to include:
 config.autoload_paths += %W(#{config.root}/lib, #{config.root}/app/components/**/)
 ```
 
+#### Devise Auth
+If you want devise authentication
+Update `config/routes.rb` to include:
+
 ### Gotcha's
 When creating a path for a page, from the examples above, make sure to include a
 leading '/', for example: '/home' -or- '/bears'
