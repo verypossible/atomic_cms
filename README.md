@@ -329,9 +329,6 @@ Update `config/application.rb` to include:
 ```ruby
 config.autoload_paths += %W(#{config.root}/lib, #{config.root}/app/components/**/)
 ```
-
-
-
 ### Gotcha's
 When creating a path for a page, from the examples above, make sure to include a
 leading '/', for example: '/home' -or- '/bears'
