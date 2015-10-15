@@ -83,11 +83,22 @@ this is properly imported:
 #### Routes
 Update your `config/routes.rb` to include the following:
 ```ruby
-mount AtomicCms::Engine => "/atomic_cms"
+mount AtomicCms::Engine => "/atomic_cms", as: :atomic_cms
 get "*path", to: "pages#show", controller: "pages", as: :page, format: false
 root to: 'pages#show', controller: "pages"
 ```
 The last two lines need to be at the **END** of your `routes.rb` file.
+
+##### Devise Authentication
+Change the mount point above to be the following:
+```ruby
+  authenticate :admin_user, -> (u) { u.admin? } do
+    mount AtomicCms::Engine => "/atomic_cms", as: :atomic_cms
+  end
+```
+where `u` is the user and `admin?` the authentication method you have on that
+user; it should return a boolean value.
+
 #### Model
 Execute the following to create a model for your static pages:
 ```ruby
@@ -318,7 +329,6 @@ Update `config/application.rb` to include:
 ```ruby
 config.autoload_paths += %W(#{config.root}/lib, #{config.root}/app/components/**/)
 ```
-
 ### Gotcha's
 When creating a path for a page, from the examples above, make sure to include a
 leading '/', for example: '/home' -or- '/bears'

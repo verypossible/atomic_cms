@@ -23,15 +23,15 @@ module AtomicCms
 
       def from_array(hash)
         array = []
-        hash.each do |key,element|
+        hash.each do |_, element|
           array << from_hash(element)
         end
         array
       end
 
       def from_value(key, value)
-        return from_array(value) if key === 'children'
-        return from_hash(value) if Hash === value
+        return from_array(value) if key == 'children'
+        return from_hash(value) if Hash == value
         return nil if value.empty?
         value
       end
