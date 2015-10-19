@@ -3,7 +3,7 @@
 
 (function() {
   'use strict';
-  var findElementIndex, page, positionEditBox, scrollTo;
+  var findElementIndex, page, positionEditBox, scrollTo, cmsType;
 
   findElementIndex = function(node) {
     var i = 0;
@@ -24,12 +24,17 @@
 
   positionEditBox = function(node) {
     var minTop, top;
-    minTop = $('#edit-page').offset().top + $('#edit-page').height() + 25;
+    minTop = $('#edit-' + cmsType()).offset().top + $('#edit-' + cmsType()).height() + 25;
     top = Math.max(minTop, $(node).offset().top);
     top -= $('#edit-node-column').offset().top;
     return $('#edit-node').css({
       top: top
     }).show();
+  };
+
+  cmsType = function(node) {
+    var cms_type = angular.element(document.querySelector('#cms_type')).val();
+    return (cms_type !== undefined) ? cms_type : 'page';
   };
 
   page = angular.module('page', ['markdown', 'ngSanitize']);
@@ -46,7 +51,7 @@
 
   page.controller('CmsCtrl', [
     '$scope', function($scope) {
-      $scope.prefix = 'page[content_object]';
+      $scope.prefix = cmsType() + '[content_object]';
       return $scope.preview = {};
     }
   ]);
