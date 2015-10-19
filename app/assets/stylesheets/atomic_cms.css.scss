@@ -121,3 +121,15 @@
     }
   }
 }
+
+#edit-node-fields {
+  input[type=file] {
+    width: calc(80% - 22px);
+    font-size: 0.95em;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    padding: 8px 10px 7px;
+  }
+  label.filler {
+    color: transparent;
+  }
+}
