@@ -24,7 +24,7 @@
 }
 
 #wrapper #active_admin_content #main_content_wrapper #main_content {
-  form#edit_page {
+  form#edit-page, form.edit-atomic-content {
     div.buttons {
       @include clearfix;
       margin: 0 0 20px;

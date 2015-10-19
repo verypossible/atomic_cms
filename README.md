@@ -252,7 +252,7 @@ ActiveAdmin.register Page do
     actions
   end
 
-  form do |f|
+  form html: { class: "edit-atomic-content" } do |f|
     f.semantic_errors(*f.object.errors.keys)
 
     # new form
