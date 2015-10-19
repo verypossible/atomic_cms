@@ -1,3 +1,5 @@
 span.li.string.input
+  label.label #{name.to_s.humanize}
   input.cms-field type="file"
+  label.label.filler #{name.to_s.humanize}
   input.cms-field type="text" name="#{name}" data-ng-model="preview.#{name}" value="#{value}"

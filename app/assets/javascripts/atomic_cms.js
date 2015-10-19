@@ -135,7 +135,7 @@
 
           $editor.find(':file').each(function() {
             var $input = $(this);
-            var $next = $($input.next());
+            var $next = $($input.siblings('input'));
             $input.attr('name', null).val('');
 
             return $input.on('change', function() {
