@@ -257,7 +257,7 @@ ActiveAdmin.register Page do
 
     # new form
     if !f.object.persisted?
-      f.inputs 'Page Details' do
+      f.inputs "Page Details" do
         f.input :title
         f.input :path
       end
@@ -265,43 +265,45 @@ ActiveAdmin.register Page do
 
     # edit form
     else
-      div class: 'buttons' do
-        render partial: 'admin/edit_buttons'
+      div class: "buttons" do
+        render partial: "admin/edit_buttons"
         f.actions
       end
 
       columns do
         column span: 3 do
-          panel 'Draft', id: 'draft-panel' do
-            render partial: 'components/edit', locals: { f: f }
+          panel "Draft", id: "draft-panel" do
+            render partial: "components/edit", locals: { f: f }
           end
         end
 
-        column id: 'edit-node-column' do
-          div id: 'edit-page' do
-            f.inputs 'Page Details' do
+        column id: "edit-node-column" do
+          div id: "edit-page" do
+            f.inputs "Page Details" do
+            f.input :cms_type, type: :hidden,
+                               input_html: { value: "page", id: "cms_type" }
               f.input :title
               f.input :path
             end
           end
 
-          div id: 'edit-node' do
-            f.inputs 'Edit Element' do
-              div id: 'edit-node-fields'
+          div id: "edit-node" do
+            f.inputs "Edit Element" do
+              div id: "edit-node-fields"
             end
 
             f.actions do
-              li class: 'move' do
-                a 'Up', '#', class: 'button', id: 'move-node-up'
+              li class: "move" do
+                a "Up", "#", class: "button", id: "move-node-up"
               end
-              li class: 'move' do
-                a 'Down', '#', class: 'button', id: 'move-node-down'
+              li class: "move" do
+                a "Down", "#", class: "button", id: "move-node-down"
               end
-              li class: 'cancel' do
-                a 'Done', '#', class: 'button', id: 'done-edit-node'
+              li class: "cancel" do
+                a "Done", "#", class: "button", id: "done-edit-node"
               end
-              li class: 'delete' do
-                a 'Delete', '#', class: 'button', id: 'delete-node'
+              li class: "delete" do
+                a "Delete", "#", class: "button", id: "delete-node"
               end
             end
           end
@@ -311,7 +313,7 @@ ActiveAdmin.register Page do
   end
 
   show do
-    div id: 'component_preview' do
+    div id: "component_preview" do
       div page.content_render
     end
   end
