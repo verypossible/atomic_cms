@@ -141,26 +141,6 @@ class PagesController < ApplicationController
   end
 end
 ```
-#### Helper
-Create `app/helpers/application_helper.rb` and update it to match the following:
-```ruby
-module ApplicationHelper
-  def add_option(option, output = nil)
-    return unless option
-    return output if output
-    option
-  end
-
-  def markdown(text)
-    return unless text
-    Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(text).html_safe
-  end
-
-  def markdown_help_url
-    "http://nestacms.com/docs/creating-content/markdown-cheat-sheet"
-  end
-end
-```
 #### Views
 Create a view at `app/views/pages/page.html.slim` that contains the following:
 ```ruby
