@@ -1,6 +1,5 @@
 module AtomicCms
   require 'paperclip'
-  require 'pry'
   class Engine < ::Rails::Engine
     isolate_namespace AtomicCms
 
@@ -11,7 +10,7 @@ module AtomicCms
       g.helper false
     end
 
-    initializer 'atomic_cms.action_controller' do |_app|
+    initializer "atomic_cms.action_controller" do |_app|
       ActiveSupport.on_load :action_controller do
         helper AtomicCms::ComponentHelper
       end

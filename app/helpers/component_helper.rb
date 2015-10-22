@@ -1,6 +1,8 @@
 module ComponentHelper
   def add_option(option, output = nil)
-    (output) ? output : option if option
+    return unless option
+    return output if output
+    option
   end
 
   def markdown(text)
@@ -13,6 +15,7 @@ module ComponentHelper
   end
 
   def render_children(children)
+    return children unless children.present? && children.is_a?(Array)
     children.map(&:render).reduce(:+)
   end
 end

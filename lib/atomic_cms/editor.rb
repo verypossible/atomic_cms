@@ -14,6 +14,20 @@ module AtomicCms
       end
     end
 
+    def render_child_array
+      cms_array(:children) do
+        rtn = ""
+        children.each do |child|
+          rtn << cms_array_node { child.edit }
+        end
+        rtn.html_safe
+      end
+    end
+
+    def children
+      options[:children] ||= []
+    end
+
     module ClassMethods
       def from_hash(params)
         h.component(params.delete(:template_name)).tap do |obj|
