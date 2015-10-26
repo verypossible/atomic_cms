@@ -143,11 +143,10 @@
             var $next = $($input.siblings('input'));
             $input.attr('name', null).val('');
 
-            return $input.on('change', function() {
+            $input.on('change', function() {
 
               var formData = new FormData(),
-                  fileData = event.target.files[0],
-                  next = $(event.target).next();
+                  fileData = event.target.files[0];
                   formData.append('file', fileData);
 
               $.ajax({
@@ -166,15 +165,31 @@
             });
           });
 
+          $editor.find('.add-children-sublist-item').each(function() {
+            var $input = $(this);
+            $input.attr('name', null).val('');
+            $input.click(function(e) {
+              e.preventDefault();
+              var component = $(this).siblings('.children-sublist').val();
+              if (component !== ''){
+                $scope.$broadcast('append', {
+                  href: component
+                });
+              }
+            });
+          });
+
           $editor.find(':input').each(function() {
-            if($(this).prop('type') === 'file') return;//guard clause, already processed file fields
+            //guard clause for handling alternatly handled inputs
+            if($(this).prop('type') === 'file') { return; }
+            if($(this).hasClass('children-sublist')) { return; }
 
             var $input = $(this);
             var fieldName = $input.attr('name').replace($scope.prefix, '').replace(/\[|\]/g, '');
 
             $input.attr('name', null).val($scope.preview[fieldName]);
 
-            return $input.on('keyup change', function() {
+            $input.on('keyup change', function() {
               $scope.$apply(function() {
                 $scope.preview[fieldName] = $input.val();
               });
