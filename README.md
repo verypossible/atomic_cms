@@ -36,7 +36,6 @@ as `admin@example.com` with the password `password` you have successfully
 completed this step.
 
 ### Media Upload
-
 To install the media tables so that you can upload files until your heart is
 literally full run:
 ```
@@ -58,11 +57,9 @@ file storage.
         s3_host_name: "s3-#{ENV.fetch('AWS_REGION', '')}.amazonaws.com"
       }
     }
-  ...
+    ...
   end
 ```
-
-
 
 #### Styles
 In order for component previews to have the proper project styling,
