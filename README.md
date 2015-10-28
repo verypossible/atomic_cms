@@ -45,20 +45,20 @@ rake db:migrate
 Also, you should configure paperclip to use s3, since s3 is better than local
 file storage.
 ```ruby
-  class Application < Rails::Application
-    ...
-    config.paperclip_defaults = {
-      storage: :s3,
-      s3_protocol: "https",
-      s3_credentials: {
-        bucket: ENV.fetch("AWS_S3_BUCKET", ""),
-        access_key_id: ENV.fetch("AWS_ACCESS_KEY", ""),
-        secret_access_key: ENV.fetch("AWS_SECRET", ""),
-        s3_host_name: "s3-#{ENV.fetch('AWS_REGION', '')}.amazonaws.com"
-      }
+class Application < Rails::Application
+  ...
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_protocol: "https",
+    s3_credentials: {
+      bucket: ENV.fetch("AWS_S3_BUCKET", ""),
+      access_key_id: ENV.fetch("AWS_ACCESS_KEY", ""),
+      secret_access_key: ENV.fetch("AWS_SECRET", ""),
+      s3_host_name: "s3-#{ENV.fetch('AWS_REGION', '')}.amazonaws.com"
     }
-    ...
-  end
+  }
+  ...
+end
 ```
 
 #### Styles
