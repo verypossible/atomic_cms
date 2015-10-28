@@ -35,6 +35,35 @@ To verify, start the server and visit `localhost:3000/admin`. If you can login
 as `admin@example.com` with the password `password` you have successfully
 completed this step.
 
+### Media Upload
+
+To install the media tables so that you can upload files until your heart is
+literally full run:
+```
+rake atomic_cms:install:migrations
+rake db:migrate
+```
+Also, you should configure paperclip to use s3, since s3 is better than local
+file storage.
+```ruby
+  class Application < Rails::Application
+    ...
+    config.paperclip_defaults = {
+      storage: :s3,
+      s3_protocol: "https",
+      s3_credentials: {
+        bucket: ENV.fetch("AWS_S3_BUCKET", ""),
+        access_key_id: ENV.fetch("AWS_ACCESS_KEY", ""),
+        secret_access_key: ENV.fetch("AWS_SECRET", ""),
+        s3_host_name: "s3-#{ENV.fetch('AWS_REGION', '')}.amazonaws.com"
+      }
+    }
+  ...
+  end
+```
+
+
+
 #### Styles
 In order for component previews to have the proper project styling,
 `active_admin.scss` will need to be updated to import your `application.scss`.
