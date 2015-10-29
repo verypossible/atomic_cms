@@ -142,9 +142,10 @@
             var $input = $(this);
             var $next = $($input.siblings('input'));
             $input.attr('name', null).val('');
+            console.log('testing event attach');
 
-            $input.on('change', function() {
-
+            $input.on('change', function(event) {
+              console.log('testing file change');
               var formData = new FormData(),
                   fileData = event.target.files[0];
                   formData.append('file', fileData);
