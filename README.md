@@ -35,6 +35,32 @@ To verify, start the server and visit `localhost:3000/admin`. If you can login
 as `admin@example.com` with the password `password` you have successfully
 completed this step.
 
+### Media Upload
+To install the media tables so that you can upload files until your heart is
+literally full run:
+```
+rake atomic_cms:install:migrations
+rake db:migrate
+```
+Also, you should configure paperclip to use s3, since s3 is better than local
+file storage.
+```ruby
+class Application < Rails::Application
+  ...
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_protocol: "https",
+    s3_credentials: {
+      bucket: ENV.fetch("AWS_S3_BUCKET", ""),
+      access_key_id: ENV.fetch("AWS_ACCESS_KEY", ""),
+      secret_access_key: ENV.fetch("AWS_SECRET", ""),
+      s3_host_name: "s3-#{ENV.fetch('AWS_REGION', '')}.amazonaws.com"
+    }
+  }
+  ...
+end
+```
+
 #### Styles
 In order for component previews to have the proper project styling,
 `active_admin.scss` will need to be updated to import your `application.scss`.
@@ -83,11 +109,22 @@ this is properly imported:
 #### Routes
 Update your `config/routes.rb` to include the following:
 ```ruby
-mount AtomicCms::Engine => "/atomic_cms"
+mount AtomicCms::Engine => "/atomic_cms", as: :atomic_cms
 get "*path", to: "pages#show", controller: "pages", as: :page, format: false
 root to: 'pages#show', controller: "pages"
 ```
 The last two lines need to be at the **END** of your `routes.rb` file.
+
+##### Devise Authentication
+Change the mount point above to be the following:
+```ruby
+  authenticate :admin_user, -> (u) { u.admin? } do
+    mount AtomicCms::Engine => "/atomic_cms", as: :atomic_cms
+  end
+```
+where `u` is the user and `admin?` the authentication method you have on that
+user; it should return a boolean value.
+
 #### Model
 Execute the following to create a model for your static pages:
 ```ruby
@@ -127,26 +164,6 @@ class PagesController < ApplicationController
 
   def cms_template
     File.join("pages", "page")
-  end
-end
-```
-#### Helper
-Create `app/helpers/application_helper.rb` and update it to match the following:
-```ruby
-module ApplicationHelper
-  def add_option(option, output = nil)
-    return unless option
-    return output if output
-    option
-  end
-
-  def markdown(text)
-    return unless text
-    Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(text).html_safe
-  end
-
-  def markdown_help_url
-    "http://nestacms.com/docs/creating-content/markdown-cheat-sheet"
   end
 end
 ```
@@ -241,12 +258,12 @@ ActiveAdmin.register Page do
     actions
   end
 
-  form do |f|
+  form html: { class: "edit-atomic-content" } do |f|
     f.semantic_errors(*f.object.errors.keys)
 
     # new form
     if !f.object.persisted?
-      f.inputs 'Page Details' do
+      f.inputs "Page Details" do
         f.input :title
         f.input :path
       end
@@ -254,43 +271,45 @@ ActiveAdmin.register Page do
 
     # edit form
     else
-      div class: 'buttons' do
-        render partial: 'admin/edit_buttons'
+      div class: "buttons" do
+        render partial: "admin/edit_buttons"
         f.actions
       end
 
       columns do
         column span: 3 do
-          panel 'Draft', id: 'draft-panel' do
-            render partial: 'components/edit', locals: { f: f }
+          panel "Draft", id: "draft-panel" do
+            render partial: "components/edit", locals: { f: f }
           end
         end
 
-        column id: 'edit-node-column' do
-          div id: 'edit-page' do
-            f.inputs 'Page Details' do
+        column id: "edit-node-column" do
+          div id: "edit-page" do
+            f.inputs "Page Details" do
+            f.input :cms_type, type: :hidden,
+                               input_html: { value: "page", id: "cms_type" }
               f.input :title
               f.input :path
             end
           end
 
-          div id: 'edit-node' do
-            f.inputs 'Edit Element' do
-              div id: 'edit-node-fields'
+          div id: "edit-node" do
+            f.inputs "Edit Element" do
+              div id: "edit-node-fields"
             end
 
             f.actions do
-              li class: 'move' do
-                a 'Up', '#', class: 'button', id: 'move-node-up'
+              li class: "move" do
+                a "Up", "#", class: "button", id: "move-node-up"
               end
-              li class: 'move' do
-                a 'Down', '#', class: 'button', id: 'move-node-down'
+              li class: "move" do
+                a "Down", "#", class: "button", id: "move-node-down"
               end
-              li class: 'cancel' do
-                a 'Done', '#', class: 'button', id: 'done-edit-node'
+              li class: "cancel" do
+                a "Done", "#", class: "button", id: "done-edit-node"
               end
-              li class: 'delete' do
-                a 'Delete', '#', class: 'button', id: 'delete-node'
+              li class: "delete" do
+                a "Delete", "#", class: "button", id: "delete-node"
               end
             end
           end
@@ -300,7 +319,7 @@ ActiveAdmin.register Page do
   end
 
   show do
-    div id: 'component_preview' do
+    div id: "component_preview" do
       div page.content_render
     end
   end
@@ -318,7 +337,6 @@ Update `config/application.rb` to include:
 ```ruby
 config.autoload_paths += %W(#{config.root}/lib, #{config.root}/app/components/**/)
 ```
-
 ### Gotcha's
 When creating a path for a page, from the examples above, make sure to include a
 leading '/', for example: '/home' -or- '/bears'

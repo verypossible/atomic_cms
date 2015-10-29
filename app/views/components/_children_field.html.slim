@@ -1,0 +1,6 @@
+span.li.string.input
+  label.label #{name.to_s.humanize}
+  select.cms-field class="children-sublist"
+    option
+    = options_for_select(options[:collection], value)
+  a class="button add-children-sublist-item" Add

@@ -14,6 +14,20 @@ module AtomicCms
       end
     end
 
+    def render_child_array
+      cms_array(:children) do
+        rtn = ""
+        children.each do |child|
+          rtn << cms_array_node { child.edit }
+        end
+        rtn.html_safe
+      end
+    end
+
+    def children
+      options[:children] ||= []
+    end
+
     module ClassMethods
       def from_hash(params)
         h.component(params.delete(:template_name)).tap do |obj|
@@ -23,15 +37,15 @@ module AtomicCms
 
       def from_array(hash)
         array = []
-        hash.each do |key,element|
+        hash.each do |_, element|
           array << from_hash(element)
         end
         array
       end
 
       def from_value(key, value)
-        return from_array(value) if key === 'children'
-        return from_hash(value) if Hash === value
+        return from_array(value) if key == 'children'
+        return from_hash(value) if Hash == value
         return nil if value.empty?
         value
       end

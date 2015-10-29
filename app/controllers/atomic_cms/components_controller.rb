@@ -1,5 +1,7 @@
-class AtomicCms::ComponentsController < ApplicationController
-  def edit
-    render text: component(params[:id]).edit_array(!!params[:inline])
+module  AtomicCms
+  class ComponentsController < ApplicationController
+    def edit
+      render text: component(params[:id]).edit_array(!!params[:inline])
+    end
   end
 end
