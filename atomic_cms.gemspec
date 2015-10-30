@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'paperclip', '~> 4.3'
   s.add_dependency 'bourbon', '~> 4.2.6'
   s.add_dependency 'neat', '~> 1.7.2'
-  s.add_dependency 'bitters', '~> 1.10'
+  s.add_dependency 'bitters', '~> 1.1.0'
 
   s.add_development_dependency 'rspec-core', '~> 3.3'
   s.add_development_dependency 'rspec-expectations', '~> 3.3'
