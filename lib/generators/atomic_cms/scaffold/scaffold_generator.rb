@@ -14,21 +14,21 @@ module AtomicCms
       def install_model_template
         setup_scaffold
         create_template({
-          template_name: 'model.rb',
+          template_name: 'model.erb',
           full_path: "app/models/#{@scaffold.model_file_name}.rb"
         })
       end
 
       def install_controller_template
         create_template({
-          template_name: 'controller.rb',
+          template_name: 'controller.erb',
           full_path: "app/controllers/#{@scaffold.controller_file_name}_controller.rb"
         })
       end
 
       def install_admin_template
         create_template({
-          template_name: 'admin.rb',
+          template_name: 'admin.erb',
           full_path: "app/admin/#{@scaffold.model_file_name}.rb"
         })
       end
