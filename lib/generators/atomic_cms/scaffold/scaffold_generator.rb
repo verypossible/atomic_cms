@@ -45,9 +45,11 @@ module AtomicCms
       end
 
       def set_route
-        inject_into_file "config/routes.rb",
+        inject_into_file(
+          "config/routes.rb",
           "\n  resources :#{@scaffold.controller_file_name}\n",
           after: %r{/atomic_cms"}
+        )
       end
 
       private
