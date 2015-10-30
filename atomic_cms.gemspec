@@ -1,12 +1,12 @@
 Gem::Specification.new do |s|
   s.name        = 'atomic_cms'
-  s.version     = '0.2.1'
+  s.version     = '0.2.2'
   s.date        = '2015-06-19'
   s.summary     = 'Atomic CMS'
   s.description = 'Live CMS powered by atomic assets.'
   s.authors     = ['Don Humphreys']
   s.email       = 'dhumphreys88@gmail.com'
-  s.files       = `git ls-files lib`.split(/\n/)
+  s.files       = `git ls-files`.split(/\n/)
   s.test_files  = Dir['spec/**/*']
   # s.homepage    = 'http://rubygems.org/gems/atomic_cms'
   # s.license       = 'MIT'
@@ -19,6 +19,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'redcarpet', '~> 3.3'
   s.add_dependency 'slim-rails', '~> 3.0'
   s.add_dependency 'paperclip', '~> 4.3'
+  s.add_dependency 'bourbon', '~> 4.2.6'
+  s.add_dependency 'neat', '~> 1.7.2'
+  s.add_dependency 'bitters', '~> 1.10'
 
   s.add_development_dependency 'rspec-core', '~> 3.3'
   s.add_development_dependency 'rspec-expectations', '~> 3.3'

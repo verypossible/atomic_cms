@@ -14,9 +14,18 @@ module AtomicCms
       def initialize_active_admin_scss
         scss_asset = 'app/assets/stylesheets/active_admin.scss'
         entries = [
-          '@import "atomic_cms"',
+          '@import "bourbon";',
+          '@import "neat";',
+          '@import "base/variables";',
+          '@import "base/grid-settings";',
+          '@import "atomic_cms";',
           '',
           '#component_preview {',
+          '  @import "base/buttons";',
+          '  @import "base/forms";',
+          '  @import "base/lists";',
+          '  @import "base/tables";',
+          '  @import "base/typography";',
           '  // When editing a page through Atomic CMS',
           '  // images with broken links should not be displayed.',
           '  img[src="image"] { display:none !important; }',
