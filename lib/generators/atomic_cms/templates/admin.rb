@@ -14,7 +14,7 @@ ActiveAdmin.register <%= @scaffold.model_name %> do
     # new form
     if !f.object.persisted?
       f.inputs "Details" do
-        # f.input :title
+        # f.input :name
       end
       f.actions
 
@@ -33,10 +33,9 @@ ActiveAdmin.register <%= @scaffold.model_name %> do
         end
 
         column id: "edit-node-column" do
-          div id: "edit-page" do
-            f.inputs "Page Details" do
-              f.input :title
-              f.input :path
+          div id: "edit-<%= @scaffold.model_file_name %>" do
+            f.inputs "<%= @scaffold.model_name %> Details" do
+              # f.input :name
             end
           end
 
