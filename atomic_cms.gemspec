@@ -13,15 +13,11 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails', '~> 4.2'
   s.add_dependency 'activeadmin', '1.0.0.pre2'
-  s.add_dependency 'angularjs-rails', '~> 1.3', '< 1.4'
   s.add_dependency 'atomic_assets', '~> 0.1.0'
   s.add_dependency 'jquery-rails', '~> 4.0', '>= 4.0.3'
   s.add_dependency 'redcarpet', '~> 3.3'
   s.add_dependency 'slim-rails', '~> 3.0'
   s.add_dependency 'paperclip', '~> 4.3'
-  s.add_dependency 'bourbon', '~> 4.2.6'
-  s.add_dependency 'neat', '~> 1.7.2'
-  s.add_dependency 'bitters', '~> 1.1.0'
 
   s.add_development_dependency 'rspec-core', '~> 3.3'
   s.add_development_dependency 'rspec-expectations', '~> 3.3'
