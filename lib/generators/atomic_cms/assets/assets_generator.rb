@@ -1,6 +1,10 @@
 module AtomicCms
   module Generators
     class AssetsGenerator < Rails::Generators::Base
+      def install_bitters
+        run "bitters install --path ./app/assets/stylesheets"
+      end
+
       def initialize_active_admin_javascript
         javascript_asset = 'app/assets/javascripts/active_admin.js.coffee'
         entries = [
