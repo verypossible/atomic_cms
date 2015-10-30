@@ -2,7 +2,10 @@ require 'json'
 
 class <%= @scaffold.controller_name %>Controller < ApplicationController
   def show
+    # Standard find by ID
     <%= "@#{@scaffold.model_file_name}" %> = <%= @scaffold.model_name %>.find(params[:id])
+    # Find by path
+    <%= "@#{@scaffold.model_file_name}" %> = <%= @scaffold.model_name %>.find_by_path(request.path)
     if <%= "@#{@scaffold.model_file_name}" %>
       render :show
     else
