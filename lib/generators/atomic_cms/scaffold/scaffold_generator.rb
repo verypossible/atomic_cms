@@ -22,7 +22,7 @@ module AtomicCms
       def install_controller_template
         create_template(
           template_name: "controller.erb",
-          full_path: "app/controllers/#{@scaffold.controller_file_name}_controller.rb"
+          full_path: controller_template_name
         )
       end
 
@@ -66,6 +66,10 @@ module AtomicCms
 
       def create_template(options)
         template(options[:template_name], options[:full_path])
+      end
+
+      def controller_template_name
+          "app/controllers/#{@scaffold.controller_file_name}_controller.rb"
       end
     end
   end

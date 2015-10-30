@@ -36,7 +36,7 @@ module AtomicCms
           '@import "base/variables";',
           '@import "base/grid-settings";',
           '@import "atomic_cms";',
-          '",
+          '',
           '#component_preview {',
           '  @import "base/buttons";',
           '  @import "base/forms";',
