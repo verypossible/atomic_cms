@@ -69,7 +69,7 @@ module AtomicCms
       end
 
       def controller_template_name
-          "app/controllers/#{@scaffold.controller_file_name}_controller.rb"
+        "app/controllers/#{@scaffold.controller_file_name}_controller.rb"
       end
     end
   end
