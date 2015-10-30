@@ -143,8 +143,7 @@
             var $next = $($input.siblings('input'));
             $input.attr('name', null).val('');
 
-            $input.on('change', function() {
-
+            $input.on('change', function(event) {
               var formData = new FormData(),
                   fileData = event.target.files[0];
                   formData.append('file', fileData);
