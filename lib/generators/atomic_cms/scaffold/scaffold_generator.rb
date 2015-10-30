@@ -1,4 +1,4 @@
-require 'active_support/core_ext/string'
+require "active_support/core_ext/string"
 
 module AtomicCms
   module Generators
@@ -13,31 +13,31 @@ module AtomicCms
 
       def install_model_template
         setup_scaffold
-        create_template({
-          template_name: 'model.erb',
+        create_template(
+          template_name: "model.erb",
           full_path: "app/models/#{@scaffold.model_file_name}.rb"
-        })
+        )
       end
 
       def install_controller_template
-        create_template({
-          template_name: 'controller.erb',
+        create_template(
+          template_name: "controller.erb",
           full_path: "app/controllers/#{@scaffold.controller_file_name}_controller.rb"
-        })
+        )
       end
 
       def install_admin_template
-        create_template({
-          template_name: 'admin.erb',
+        create_template(
+          template_name: "admin.erb",
           full_path: "app/admin/#{@scaffold.model_file_name}.rb"
-        })
+        )
       end
 
       def install_show_view_template
-        create_template({
-          template_name: 'show.html.slim',
+        create_template(
+          template_name: "show.html.slim",
           full_path: "app/views/#{@scaffold.view_folder}/show.html.slim"
-        })
+        )
       end
 
       def create_migration
@@ -61,7 +61,7 @@ module AtomicCms
       end
 
       def create_template(options)
-        template( options[:template_name], options[:full_path] )
+        template(options[:template_name], options[:full_path])
       end
     end
   end
