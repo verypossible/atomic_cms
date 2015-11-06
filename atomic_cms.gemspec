@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'atomic_cms'
-  s.version     = '0.2.2'
+  s.version     = '0.2.3'
   s.date        = '2015-06-19'
   s.summary     = 'Atomic CMS'
   s.description = 'Live CMS powered by atomic assets.'
