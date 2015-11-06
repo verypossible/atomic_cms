@@ -5,7 +5,6 @@ require File.expand_path("../dummy/config/environment.rb", __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
-require 'rspec/autorun'
 require 'factory_girl_rails'
 require 'shoulda/matchers'
 require 'paperclip/matchers'
