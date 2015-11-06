@@ -166,13 +166,14 @@
 
           $editor.find('.add-children-sublist-item').each(function() {
             var $input = $(this);
-            $input.attr('name', null).val('');
+            var $componentInput = $input.siblings('.children-sublist');
+            $componentInput.attr('name', null).val('');
             $input.click(function(e) {
               e.preventDefault();
-              var component = $(this).siblings('.children-sublist').val();
-              if (component !== ''){
+              var componentPath = $componentInput.val();
+              if (componentPath !== ''){
                 $scope.$broadcast('append', {
-                  href: component
+                  href: componentPath
                 });
               }
             });
