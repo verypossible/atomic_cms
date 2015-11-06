@@ -4,8 +4,8 @@ Gem::Specification.new do |s|
   s.date        = '2015-06-19'
   s.summary     = 'Atomic CMS'
   s.description = 'Live CMS powered by atomic assets.'
-  s.authors     = ['Don Humphreys']
-  s.email       = 'dhumphreys88@gmail.com'
+  s.authors     = ['Don Humphreys', 'Spartan']
+  s.email       = 'spartan-helot@spartansystems.co'
   s.files       = `git ls-files`.split(/\n/)
   s.test_files  = Dir['spec/**/*']
   # s.homepage    = 'http://rubygems.org/gems/atomic_cms'
