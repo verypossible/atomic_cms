@@ -1,15 +1,14 @@
 Gem::Specification.new do |s|
   s.name        = 'atomic_cms'
-  s.version     = '0.2.3'
-  s.date        = '2015-06-19'
+  s.version     = '0.2.4'
   s.summary     = 'Atomic CMS'
   s.description = 'Live CMS powered by atomic assets.'
   s.authors     = ['Don Humphreys', 'Spartan']
   s.email       = 'spartan-helot@spartansystems.co'
   s.files       = `git ls-files`.split(/\n/)
   s.test_files  = Dir['spec/**/*']
-  # s.homepage    = 'http://rubygems.org/gems/atomic_cms'
-  # s.license       = 'MIT'
+  s.homepage    = 'https://github.com/spartansystems/atomic_cms'
+  s.license       = 'MIT'
 
   s.add_dependency 'rails', '~> 4.2'
   s.add_dependency 'activeadmin', '1.0.0.pre2'

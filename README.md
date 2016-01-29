@@ -173,3 +173,6 @@ config.autoload_paths += %W(#{config.root}/lib, #{config.root}/app/components/**
 ### Gotcha's
 When creating a path for a page, from the examples above, make sure to include a
 leading '/', for example: '/home' -or- '/bears'
+
+## License
+Atomic CMS is released under the [MIT License](http://opensource.org/licenses/MIT).
