@@ -1,3 +1,6 @@
+AllCops:
+  TargetRubyVersion: 2.3
+
 Style/Documentation:
   Enabled: false
 
@@ -6,6 +9,13 @@ Style/DotPosition:
   SupportedStyles:
     - leading
     - trailing
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: when_needed
+  SupportedStyles:
+    - when_needed
+    - always
+    - never
 
 Style/StringLiterals:
   EnforcedStyle: single_quotes
