@@ -12,13 +12,14 @@ RSpec.describe AtomicCms::MediaController, type: :controller do
     scrubber = double("scrubber")
     allow(MediaScrubber).to receive(:new).and_return(scrubber)
     allow(scrubber).to receive(:save).and_return(false)
+    allow(scrubber).to receive(:errors)
 
     post :create, file: double("file")
 
     expect(response).to have_http_status(:unprocessable_entity)
   end
 
-  it "accepts a post with an image" do
+  it "accepts a post with a file" do
     scrubber = double("scrubber", save: true, url: "http://www.google.com")
     expect(MediaScrubber).to receive(:new).and_return(scrubber)
 

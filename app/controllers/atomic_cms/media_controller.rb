@@ -5,7 +5,8 @@ module AtomicCms
       if asset.save
         render json: { url: asset.url }.to_json, status: :created
       else
-        render json: {}.to_json, status: :unprocessable_entity
+        render json: { errors: asset.errors }.to_json,
+               status: :unprocessable_entity
       end
     end
 

@@ -1,5 +1,5 @@
 class MediaScrubber
-  attr_accessor :original, :filtered
+  attr_accessor :original, :filtered, :errors
 
   def initialize(args)
     @original = args.fetch(:file, nil)
@@ -8,12 +8,16 @@ class MediaScrubber
 
   def infer_media_type
     return nil unless original.respond_to?(:content_type)
-    AtomicCms::Image.new(file: original) if original.content_type.match(/image/)
+    params = { file: original }
+    return AtomicCms::Image.new(params) if original.content_type =~ /image/
+    AtomicCms::Video.new(params) if original.content_type =~ /video/
   end
 
   def valid?
     return false unless filtered
-    filtered.valid?
+    return true if filtered.valid?
+    @errors = filtered.errors
+    false
   end
 
   def save
