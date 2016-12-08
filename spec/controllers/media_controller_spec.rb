@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe AtomicCms::MediaController, type: :controller do
   # Previously the engines guide contained an incorrect example that
@@ -8,24 +8,24 @@ RSpec.describe AtomicCms::MediaController, type: :controller do
   # in the test case with `Foo::Engine.routes`.
   before { @routes = AtomicCms::Engine.routes }
 
-  it "accepts a post request and fails with bad data" do
-    scrubber = double("scrubber")
+  it 'accepts a post request and fails with bad data' do
+    scrubber = double('scrubber')
     allow(MediaScrubber).to receive(:new).and_return(scrubber)
     allow(scrubber).to receive(:save).and_return(false)
     allow(scrubber).to receive(:errors)
 
-    post :create, file: double("file")
+    post :create, file: double('file')
 
     expect(response).to have_http_status(:unprocessable_entity)
   end
 
-  it "accepts a post with a file" do
-    scrubber = double("scrubber", save: true, url: "http://www.google.com")
+  it 'accepts a post with a file' do
+    scrubber = double('scrubber', save: true, url: 'http://www.google.com')
     expect(MediaScrubber).to receive(:new).and_return(scrubber)
 
-    post :create, file: double("file")
+    post :create, file: double('file')
 
     expect(response).to have_http_status(:created)
-    expect(response.body).to include("http://www.google.com")
+    expect(response.body).to include('http://www.google.com')
   end
 end
