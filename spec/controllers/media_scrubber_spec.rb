@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe MediaScrubber do
   let(:path) { File.expand_path('../../uploads', __FILE__) }
   let(:image) { File.open("#{path}/cat.jpg") }
+  let(:video) { File.open("#{path}/small.mp4") }
 
   it 'takes a file as an argument' do
     something = double('some_document')
@@ -14,6 +15,12 @@ RSpec.describe MediaScrubber do
       allow(image).to receive(:content_type).and_return('image/jpg')
       m = MediaScrubber.new(file: image)
       expect(m.infer_media_type.class).to be(AtomicCms::Image)
+    end
+
+    it 'returns a Video if the file type is a video' do
+      allow(video).to receive(:content_type).and_return('video/mp4')
+      m = MediaScrubber.new(file: video)
+      expect(m.infer_media_type.class).to be(AtomicCms::Video)
     end
 
     it 'returns nil if not supported' do
@@ -35,14 +42,22 @@ RSpec.describe MediaScrubber do
       expect(m.valid?).to be(false)
     end
 
-    it 'passes the valid call onto the underlying Object if filtered' do
+    it 'returns true if underlying Object is filtered' do
       m = MediaScrubber.new(file: image)
       m.filtered = spy('underlying_asset')
-      allow(m.filtered).to receive(:valid?).and_return(:true)
+      allow(m.filtered).to receive(:valid?).and_return(true)
 
-      m.valid?
+      expect(m.valid?).to be(true)
 
       expect(m.filtered).to have_received(:valid?)
+    end
+
+    it 'returns false if underlying Object is not filtered' do
+      m = MediaScrubber.new(file: image)
+      m.filtered = spy('underlying_asset')
+      allow(m.filtered).to receive(:valid?).and_return(false)
+
+      expect(m.valid?).to be(false)
     end
   end
 

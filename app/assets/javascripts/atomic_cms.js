@@ -39,6 +39,13 @@
 
   page = angular.module('page', ['markdown', 'ngSanitize']);
 
+  page.config(function($sceDelegateProvider) {
+    $sceDelegateProvider.resourceUrlWhitelist([
+      'self', 
+      'http://s3.amazonaws.com/**'
+    ]);
+  });
+
   page.filter('vimeo_url', [
     '$sce', function($sce) {
       return function(id) {
@@ -141,6 +148,7 @@
           $editor.find(':file').each(function() {
             var $input = $(this);
             var $next = $($input.siblings('input'));
+            var $errors = $($input.siblings('div.errors'));
             $input.attr('name', null).val('');
 
             $input.on('change', function(event) {
@@ -159,6 +167,11 @@
                   var parsed = JSON.parse(data);
                   $next.val(parsed.url);
                   $next.change();
+                  $errors.empty();
+                },
+                error: function (response) {
+                  var data = JSON.parse(response.responseText);
+                  $errors.text(data.errors.file[0]);
                 }
               });
             });
