@@ -39,12 +39,12 @@
 
   page = angular.module('page', ['markdown', 'ngSanitize']);
 
-  page.config(function($sceDelegateProvider) {
+  page.config(['$sceDelegateProvider', function($sceDelegateProvider) {
     $sceDelegateProvider.resourceUrlWhitelist([
       'self', 
       'http://s3.amazonaws.com/**'
     ]);
-  });
+  }]);
 
   page.filter('vimeo_url', [
     '$sce', function($sce) {
