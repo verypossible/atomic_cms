@@ -41,8 +41,9 @@
 
   page.config(['$sceDelegateProvider', function($sceDelegateProvider) {
     $sceDelegateProvider.resourceUrlWhitelist([
-      'self', 
-      'http://s3.amazonaws.com/**'
+      'self',
+      'http://s3.amazonaws.com/**',
+      'https://s3.amazonaws.com/**'
     ]);
   }]);
 
