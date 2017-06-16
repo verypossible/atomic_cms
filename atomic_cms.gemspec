@@ -4,10 +4,10 @@ Gem::Specification.new do |s|
   s.summary     = 'Atomic CMS'
   s.description = 'Live CMS powered by atomic assets.'
   s.authors     = ['Don Humphreys', 'Spartan']
-  s.email       = 'spartan-helot@spartansystems.co'
+  s.email       = 'support@verypossible.com'
   s.files       = `git ls-files`.split(/\n/)
   s.test_files  = Dir['spec/**/*']
-  s.homepage    = 'https://github.com/spartansystems/atomic_cms'
+  s.homepage    = 'https://github.com/verypossible/atomic_cms'
   s.license     = 'MIT'
 
   s.add_dependency 'rails', '~> 4.2'
