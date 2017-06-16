@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
   s.version     = '0.3.2'
   s.summary     = 'Atomic CMS'
   s.description = 'Live CMS powered by atomic assets.'
-  s.authors     = ['Don Humphreys', 'Spartan']
+  s.authors     = ['Don Humphreys', 'Very']
   s.email       = 'support@verypossible.com'
   s.files       = `git ls-files`.split(/\n/)
   s.test_files  = Dir['spec/**/*']
