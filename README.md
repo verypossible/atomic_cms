@@ -11,7 +11,7 @@ intervention. Below are instructions for getting started.
 After initializing a new Rails application, or adding to an existing
 application, add the following gems to your Gemfile.
 ```ruby
-gem 'atomic_cms', github: 'spartansystems/atomic_cms'
+gem 'atomic_cms', github: 'verypossible/atomic_cms'
 gem 'devise'
 ```
 _Note: devise is optional if you do not want admin users to login._
@@ -92,7 +92,7 @@ class Application < Rails::Application
       bucket: ENV.fetch("AWS_S3_BUCKET", ""),
       access_key_id: ENV.fetch("AWS_ACCESS_KEY", ""),
       secret_access_key: ENV.fetch("AWS_SECRET", ""),
-      s3_host_name: "s3-#{ENV.fetch('AWS_REGION', '')}.amazonaws.com"
+      s3_region: ENV.fetch("AWS_REGION", ""),
     }
   }
   ...
