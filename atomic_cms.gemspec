@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'atomic_cms'
-  s.version     = '0.4.0'
+  s.version     = '0.4.1'
   s.summary     = 'Atomic CMS'
   s.description = 'Live CMS powered by atomic assets.'
   s.authors     = ['Don Humphreys', 'Very']
@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails', '~> 4.0', '>= 4.0.3'
   s.add_dependency 'redcarpet', '~> 3.3'
   s.add_dependency 'slim-rails', '~> 3.0'
-  s.add_dependency 'paperclip', '~> 5.2'
+  s.add_dependency 'paperclip'
 
   s.add_development_dependency 'rspec-core', '~> 3.3'
   s.add_development_dependency 'rspec-expectations', '~> 3.3'
