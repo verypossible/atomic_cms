@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '~> 4.2'
   s.add_dependency 'activeadmin'
   s.add_dependency 'atomic_assets', '~> 0.1.0'
-  s.add_dependency 'jquery-rails', '~> 4.0', '>= 4.0.3'
+  s.add_dependency 'jquery-rails', '~> 4.4.0'
   s.add_dependency 'redcarpet', '~> 3.3'
   s.add_dependency 'slim-rails', '~> 3.0'
   s.add_dependency 'paperclip'
