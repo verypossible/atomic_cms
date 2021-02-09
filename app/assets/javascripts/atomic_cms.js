@@ -96,7 +96,7 @@
           return $scope.prefix = prefix + '[' + prefixName + ']';
         });
         if ($(element).hasClass('cms-array')) {
-          topLevelArray = $(element).parent().closest('.cms-array').size() === 0;
+          topLevelArray = $(element).parent().closest('.cms-array').length === 0;
           appendNode = function(source) {
             var newEl;
             newEl = angular.element(source);
